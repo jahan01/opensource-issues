@@ -1,0 +1,34 @@
+plugins {
+    id 'scala'
+    id 'io.github.cosmicsilence.scalafix' version '0.1.4'
+}
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    scalaVersion = '2.12.12'
+    scalaMajorVersion = '2.12'
+}
+
+dependencies {
+    implementation "org.scala-lang:scala-library:${scalaVersion}"
+    implementation "org.scalikejdbc:scalikejdbc_${scalaMajorVersion}:3.5.0"
+
+    scalafix "com.github.liancheng:organize-imports_${scalaMajorVersion}:0.4.3"
+}
+
+tasks.withType(ScalaCompile) {
+    scalaCompileOptions.additionalParameters = [
+        "-feature",
+        "-deprecation",
+        "-Xlint:infer-any",
+        "-Xlint:missing-interpolator",
+        "-Xlint:unsound-match",
+        "-Xlint:unused",
+        "-Yno-adapted-args",
+        "-Ywarn-dead-code",
+        "-Ywarn-inaccessible",
+    ]
+}

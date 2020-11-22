@@ -1,0 +1,8 @@
+.bloop/
+.metals/
+.gradle/
+
+target/
+build/
+
+*.class
